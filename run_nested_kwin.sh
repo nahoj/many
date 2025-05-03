@@ -11,17 +11,26 @@ sock=wayland-1
 
 # Launch everything inside its own DBus session
 export XDG_CURRENT_DESKTOP=KDE
+# Export GDK_BACKEND *before* starting the session, so it is given to programs
+# run by the KDE shortcut handler, such as wofi
+export GDK_BACKEND=wayland
+export QT_QPA_PLATFORM=wayland
+
 dbus-run-session kwin_wayland \
+  --no-lockscreen \
+  --xwayland \
   --socket $sock \
-  &
+  & # KWin runs in background relative to main script
 
 KWIN_PID=$!
 
 # Give KWin a moment to start
-sleep 2
+sleep 1
 
 # Now launch Konsole into that nested compositor
-WAYLAND_DISPLAY=$sock QT_QPA_PLATFORM=wayland konsole &
+# Konsole needs variables prepended as it's launched from the main script's env
 
-# Wait for kwin
+WAYLAND_DISPLAY=$sock konsole &
+
+# Wait for kwin process started by this script
 wait $KWIN_PID
