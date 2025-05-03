@@ -16,21 +16,8 @@ export XDG_CURRENT_DESKTOP=KDE
 export GDK_BACKEND=wayland
 export QT_QPA_PLATFORM=wayland
 
+  # --xwayland \
 dbus-run-session kwin_wayland \
   --no-lockscreen \
-  --xwayland \
   --socket $sock \
-  & # KWin runs in background relative to main script
-
-KWIN_PID=$!
-
-# Give KWin a moment to start
-sleep 1
-
-# Now launch Konsole into that nested compositor
-# Konsole needs variables prepended as it's launched from the main script's env
-
-WAYLAND_DISPLAY=$sock konsole &
-
-# Wait for kwin process started by this script
-wait $KWIN_PID
+  /usr/bin/konsole
