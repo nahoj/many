@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
-# run-nested-kde.sh
 
 # Point your configs
-export KDEHOME=$HOME/.config/many/nestedconfig
+export KDEHOME=$HOME/.config/many/xdgconfig
 export XDG_CONFIG_HOME=$KDEHOME
 export XDG_DATA_HOME=$HOME/.local/share/many
 export XDG_CACHE_HOME=$HOME/.cache/many
