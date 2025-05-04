@@ -7,7 +7,7 @@ DATA_DIR := $(HOME)/.local/share
 
 lninstall:
 	mkdir -p $(CONFIG_HOME)
-	ln -sf $(abspath config) $(MANY_CONFIG)
+	ln -sf $(abspath config) $(CONFIG_HOME)/
 
 	mkdir -p $(MANY_CONFIG)/xdgconfig/many
 	ln -sf $(MANY_CONFIG)/launcher_apps $(MANY_CONFIG)/xdgconfig/many/
