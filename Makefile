@@ -5,7 +5,7 @@ MANY_CONFIG := $(CONFIG_HOME)/many
 
 DATA_DIR := $(HOME)/.local/share
 
-install:
+lninstall:
 	mkdir -p $(CONFIG_HOME)
 	ln -sf $(abspath config) $(MANY_CONFIG)
 
