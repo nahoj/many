@@ -3,11 +3,15 @@
 # Point your configs
 export KDEHOME=$HOME/.config/many/xdgconfig
 export XDG_CONFIG_HOME=$KDEHOME
-export XDG_DATA_HOME=$HOME/.local/share/many
 export XDG_CACHE_HOME=$HOME/.cache/many
 
-# Choose a single socket name
-sock=wayland-1
+# Find the first available Wayland socket name
+for i in {1..32}; do
+  if ! [ -e /run/user/"$(id -u)"/wayland-$i ]; then
+    sock=wayland-$i
+    break
+  fi
+done
 
 # Launch everything inside its own DBus session
 export XDG_CURRENT_DESKTOP=KDE
