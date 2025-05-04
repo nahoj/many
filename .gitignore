@@ -1,6 +1,5 @@
 /_config
 /_share
-/config/launchershare
 /config/xdgconfig/*
 !/config/xdgconfig/dolphinrc
 !/config/xdgconfig/katerc

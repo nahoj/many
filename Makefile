@@ -5,10 +5,6 @@ MANY_CONFIG := $(CONFIG_HOME)/many
 
 DATA_DIR := $(HOME)/.local/share
 
-install-deps:
-	apt-get update
-	apt-get install wofi
-
 install:
 	mkdir -p $(CONFIG_HOME)
 	ln -sf $(abspath config) $(MANY_CONFIG)

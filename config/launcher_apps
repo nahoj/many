@@ -1,5 +1,6 @@
 # Supports comments
+img:/usr/share/icons/breeze/emblems/16/package-new.svg:text:AI
 img:/usr/share/icons/hicolor/scalable/apps/kate.svg:text:Editor
 img:/usr/share/icons/hicolor/scalable/apps/org.kde.dolphin.svg:text:Files
 img:/usr/share/icons/breeze/apps/64/utilities-terminal.svg:text:Terminal
-img:/usr/share/icons/hicolor/128x128/apps/firefox.png:text:Web
+img:/usr/share/icons/breeze/apps/48/internet-web-browser.svg:text:Web

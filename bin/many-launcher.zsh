@@ -1,11 +1,13 @@
 #!/usr/bin/env zsh
 
 local selected=$(<"${XDG_CONFIG_HOME:-$HOME/.config}/many/launcher_apps" grep -v '^#' | \
-                     wofi --show dmenu --allow-images --parse-search)
+                     wofi --show dmenu)
 local name=${selected##*:}
-echo $name
 
 case $name in
+    "AI")
+        falkon 'https://claude.ai/new'
+        ;;
     "Editor")
         kate
         ;;
@@ -16,7 +18,7 @@ case $name in
         konsole
         ;;
     "Web")
-        brave-browser
+        falkon
         ;;
     *)
         echo "Unknown app: '$name'"
