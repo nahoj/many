@@ -12,21 +12,35 @@ vars:
 tasks:
   clipcascade:
     desc: Install ClipCascade server and client
+    deps: [clipcascade:server, clipcascade:client, clipcascade:service]
+
+  clipcascade:server:
+    desc: Install ClipCascade server
     preconditions:
-      - sh: '[ ! -d {{.OPT_DIR}}/ClipCascade ] && [ ! -d {{.OPT_DIR}}/ClipCascade-Server ]'
-        msg: "ClipCascade or ClipCascade-Server already exists in \"{{.OPT_DIR}}\"."
+      - sh: '[ ! -d {{.OPT_DIR}}/ClipCascade-Server ]'
+        msg: "ClipCascade-Server already exists in \"{{.OPT_DIR}}\"."
     cmds:
       - mkdir -p {{.OPT_DIR}}/ClipCascade-Server
       - |
         wget --no-clobber 'https://github.com/Sathvik-Rao/ClipCascade/releases/download/3.0.0/ClipCascade-Server-JRE_17.jar' \
         -P {{.OPT_DIR}}/ClipCascade-Server
 
+  clipcascade:client:
+    desc: Install ClipCascade client
+    preconditions:
+      - sh: '[ ! -d {{.OPT_DIR}}/ClipCascade ]'
+        msg: "ClipCascade already exists in \"{{.OPT_DIR}}\"."
+    cmds:
       - wget --no-clobber 'https://github.com/Sathvik-Rao/ClipCascade/releases/download/3.0.0/ClipCascade_Linux.tar.xz'
+      - mkdir -p {{.OPT_DIR}}
       - tar -xf "ClipCascade_Linux.tar.xz" -C {{.OPT_DIR}}
       - cd {{.OPT_DIR}}/ClipCascade && python3 -m venv .venv
       - cd {{.OPT_DIR}}/ClipCascade && .venv/bin/pip install -r requirements.txt
       - cp {{.PROJECT_ROOT}}/clipcascade/DATA {{.OPT_DIR}}/ClipCascade/
 
+  clipcascade:service:
+    desc: Install ClipCascade systemd service
+    cmds:
       - mkdir -p {{.CONFIG_HOME}}/systemd/user
       - ln -sf {{.PROJECT_ROOT}}/clipcascade/clipcascade.service {{.CONFIG_HOME}}/systemd/user/
       - systemctl --user daemon-reload

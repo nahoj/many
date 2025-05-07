@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-# systemctl --user start clipcascade.service
+systemctl --user start clipcascade
 
 # Point your configs
 export KDEHOME=$HOME/.config/many/xdgconfig

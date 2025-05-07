@@ -24,7 +24,7 @@
 
 ## Installation
 
-Check in `Taskfile.yml` that `BIN_DIR` is in your `PATH`.
+Check in `Taskfile.yml` that `BIN_DIR` is in your `PATH`, then do:
 
 ```shell
 task lninstall
@@ -32,17 +32,26 @@ task lninstall
 
 ### Clipboard synchronization
 
-* `task clipcascade`
-  * `systemctl --user start clipcascade`
-  * Ignore the client dialog at first.
-  * After 10s or so, connect to http://localhost:15186/ with Username `admin` and Password `admin123`
-  * Create a user with a password, e.g. `user` and `user123`
-  * Close the web admin and log in in the client dialog.
-
-
 [ClipCascade](https://github.com/Sathvik-Rao/ClipCascade) works great, at least for text.
 
-### Also considered
+To install:
+
+* `task clipcascade`
+* `systemctl --user start clipcascade`
+  * (takes 10s to start on my computer)
+* Ignore the client dialog at first (there may be a login error).
+* Log in to http://localhost:15186/ with Username `admin` and Password `admin123`.
+* Create a user with a password, e.g. `user` and `user123`.
+  * Close the web admin.
+* Log in in the client dialog without changing any settings.
+
+When running Many, you will be asked:
+
+> Another instance of ClipCascade is already running. Do you want to run anyway?
+
+Say yes.
+
+#### Also considered
 
 * https://github.com/dnut/clipboard-sync : kinda works but makes the host clipboard buggy
 * https://github.com/quackduck/uniclip : doesn't sync anything
