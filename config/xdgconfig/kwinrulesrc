@@ -1,0 +1,6 @@
+[1]
+Description=All windows transparency
+OpacityActive=85
+OpacityInactive=85
+OpacityActiveRule=2
+OpacityInactiveRule=2

@@ -1,11 +1,13 @@
-**`many`**, an imitation of Wave Terminal made using KWin and other existing components.
+**`Many`**, an imitation of Wave Terminal made using KWin and other existing components.
 
 ## Dependencies
 ### Mandatory
 
-* A KDE desktop using Wayland. This was tested on Plasma 6.1.
+* A KDE desktop with Wayland, systemd. This was tested on Plasma 6.1.
 
-* `sudo apt-get install make sed wofi zsh`
+* `sudo apt-get install make sed swaybg wofi zsh`
+
+* `sudo snap install --classic task`
 
 * [Kröhnkite](https://github.com/anametologin/krohnkite/releases) tiling extension for KWin
   * Install with `kpackagetool6 -t KWin/Script -i krohnkite-x.x.x.x.kwinscript`
@@ -22,27 +24,23 @@
 
 ## Installation
 
-Check in the `Makefile` that `BIN_DIR` is in your `PATH`.
+Check in `Taskfile.yml` that `BIN_DIR` is in your `PATH`.
 
-```bash
-make lninstall
+```shell
+task lninstall
 ```
 
-## Clipboard synchronization
+### Clipboard synchronization
+
+* `task clipcascade`
+  * `systemctl --user start clipcascade`
+  * Ignore the client dialog at first.
+  * After 10s or so, connect to http://localhost:15186/ with Username `admin` and Password `admin123`
+  * Create a user with a password, e.g. `user` and `user123`
+  * Close the web admin and log in in the client dialog.
+
 
 [ClipCascade](https://github.com/Sathvik-Rao/ClipCascade) works great, at least for text.
-
-Setup was easy enough for me (despite the scary README).
-
-To avoid pipx, create a venv for the client:
-
-```bash
-cd ClipCascade
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-python main.py
-```
 
 ### Also considered
 

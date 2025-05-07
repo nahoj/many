@@ -2,3 +2,4 @@
 /_share
 /config/xdgconfig/*
 !/config/xdgconfig/wofi
+/ClipCascade*

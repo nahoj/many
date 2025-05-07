@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+set -euo pipefail
+
 local selected=$(<"${XDG_CONFIG_HOME:-$HOME/.config}/many/launcher_apps" grep -v '^#' | \
                      wofi --show dmenu)
 local name=${selected##*:}

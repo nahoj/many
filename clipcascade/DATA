@@ -1,0 +1,23 @@
+{
+    "cipher_enabled": false,
+    "server_url": "http://localhost:15186",
+    "websocket_url": "ws://localhost:15186/clipsocket",
+    "username": "user",
+    "hashed_password": null,
+    "cookie": {
+        "JSESSIONID": "9C8D785357960368C3F5A55C18374890"
+    },
+    "maxsize": 1048576,
+    "hash_rounds": 664937,
+    "salt": "",
+    "csrf_token": "UY-B42GWlzeC7A9cnN3TEGcOdzrGkMsxXjyKFdY0BqOvW5wnZ7jgglGi9FSviDdsq_DnJ1ZqWlii8v0cZlruJuJRNJbLOfke",
+    "notification": true,
+    "save_password": true,
+    "password": "",
+    "max_clipboard_size_local_limit_bytes": null,
+    "enable_image_sharing": true,
+    "enable_file_sharing": false,
+    "default_file_download_location": "",
+    "server_mode": "P2S",
+    "stun_url": ""
+}

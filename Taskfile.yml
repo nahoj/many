@@ -1,0 +1,50 @@
+version: '3'
+
+vars:
+  BIN_DIR: '{{.HOME}}/.local/bin'
+  CONFIG_HOME: '{{if .XDG_CONFIG_HOME}}{{.XDG_CONFIG_HOME}}{{else}}{{.HOME}}/.config{{end}}'
+  MANY_CONFIG: '{{.CONFIG_HOME}}/many'
+  DATA_DIR: '{{.HOME}}/.local/share'
+  OPT_DIR: '{{.HOME}}/.local/opt'
+  PROJECT_ROOT: '{{.TASK_DIR}}'
+  CLIPCASCADE_PORT: 15186
+
+tasks:
+  clipcascade:
+    desc: Install ClipCascade server and client
+    preconditions:
+      - sh: '[ ! -d {{.OPT_DIR}}/ClipCascade ] && [ ! -d {{.OPT_DIR}}/ClipCascade-Server ]'
+        msg: "ClipCascade or ClipCascade-Server already exists in \"{{.OPT_DIR}}\"."
+    cmds:
+      - mkdir -p {{.OPT_DIR}}/ClipCascade-Server
+      - |
+        wget --no-clobber 'https://github.com/Sathvik-Rao/ClipCascade/releases/download/3.0.0/ClipCascade-Server-JRE_17.jar' \
+        -P {{.OPT_DIR}}/ClipCascade-Server
+
+      - wget --no-clobber 'https://github.com/Sathvik-Rao/ClipCascade/releases/download/3.0.0/ClipCascade_Linux.tar.xz'
+      - tar -xf "ClipCascade_Linux.tar.xz" -C {{.OPT_DIR}}
+      - cd {{.OPT_DIR}}/ClipCascade && python3 -m venv .venv
+      - cd {{.OPT_DIR}}/ClipCascade && .venv/bin/pip install -r requirements.txt
+      - cp {{.PROJECT_ROOT}}/clipcascade/DATA {{.OPT_DIR}}/ClipCascade/
+
+      - mkdir -p {{.CONFIG_HOME}}/systemd/user
+      - ln -sf {{.PROJECT_ROOT}}/clipcascade/clipcascade.service {{.CONFIG_HOME}}/systemd/user/
+      - systemctl --user daemon-reload
+
+  lninstall:
+    desc: Install Many files
+    cmds:
+      - mkdir -p {{.CONFIG_HOME}}
+      - ln -sf {{.PROJECT_ROOT}}/config {{.CONFIG_HOME}}/
+      
+      - mkdir -p {{.MANY_CONFIG}}/xdgconfig
+      - ln -sf {{.CONFIG_HOME}}/kcminputrc {{.MANY_CONFIG}}/xdgconfig
+      
+      - mkdir -p {{.MANY_CONFIG}}/xdgconfig/many
+      - ln -sf {{.MANY_CONFIG}}/launcher_apps {{.MANY_CONFIG}}/xdgconfig/many/
+      
+      - mkdir -p {{.DATA_DIR}}/applications
+      - ln -sf {{.PROJECT_ROOT}}/share/applications/* {{.DATA_DIR}}/applications/
+      
+      - mkdir -p {{.BIN_DIR}}
+      - ln -sf {{.PROJECT_ROOT}}/bin/* {{.BIN_DIR}}/

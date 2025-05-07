@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
+# systemctl --user start clipcascade.service
+
 # Point your configs
 export KDEHOME=$HOME/.config/many/xdgconfig
 export XDG_CONFIG_HOME=$KDEHOME
@@ -16,12 +20,13 @@ done
 # Launch everything inside its own DBus session
 export XDG_CURRENT_DESKTOP=KDE
 # Export GDK_BACKEND *before* starting the session, so it is given to programs
-# run by the KDE shortcut handler, such as wofi
+# run by the KDE shortcut handler, such as the Wofi launcher
 export GDK_BACKEND=wayland
 export QT_QPA_PLATFORM=wayland
 
   # --xwayland \
 dbus-run-session kwin_wayland \
+  --desktopfile 'many.desktop' \
   --no-lockscreen \
   --socket $sock \
-  /usr/bin/konsole
+  "$HOME/.local/bin/many-init.zsh"

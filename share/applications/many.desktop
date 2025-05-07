@@ -4,6 +4,7 @@ Comment=A terminal with many widgets
 Exec=many
 Icon=utilities-terminal
 Type=Application
+StartupWMClass=many
 Categories=Qt;KDE;System;TerminalEmulator;
 Keywords=terminal;console;script;run;execute;command;command-line;commandline;cli;bash;sh;shell;zsh;cmd;command prompt;developer;emulator;
 StartupNotify=true

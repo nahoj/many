@@ -1,0 +1,11 @@
+[Unit]
+Description=ClipCascade, both server and client
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -c "cd %h/.local/opt/ClipCascade-Server && CC_PORT=15186 java -jar ClipCascade-Server-JRE_17.jar & sleep 10 && cd %h/.local/opt/ClipCascade && .venv/bin/python main.py & wait"
+ExecStop=/bin/bash -c "pkill -P $MAINPID || true"
+Restart=no
+
+[Install]
+WantedBy=default.target
