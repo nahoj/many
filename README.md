@@ -60,7 +60,7 @@ We use [ClipCascade](https://github.com/Sathvik-Rao/ClipCascade) to be able to
 copy & paste between Many and the rest of the system. This basic feature takes
 a few steps to set up:
 
-* Install Java JRE ≥ 17, e.g. `sudo apt-get install default-jre`
+* Java JRE ≥ 17 and Python venv: `sudo apt-get install default-jre python3-venv`
 * `task clipcascade`
 * `systemctl --user start clipcascade`
   * (takes 10+ seconds to start)
