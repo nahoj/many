@@ -12,6 +12,9 @@ padding=4
 [Tiling][7fb8c463-c102-5440-8fb7-5253b26b5d9c]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
+[Xwayland]
+Scale=1
+
 [org.kde.kdecoration2]
 ButtonsOnRight=AX
 library=org.kde.kwin.aurorae

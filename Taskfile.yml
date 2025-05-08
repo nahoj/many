@@ -1,12 +1,14 @@
 version: '3'
 
 vars:
+  PROJECT_ROOT: '{{.TASK_DIR}}'
+
   BIN_DIR: '{{.HOME}}/.local/bin'
   CONFIG_HOME: '{{if .XDG_CONFIG_HOME}}{{.XDG_CONFIG_HOME}}{{else}}{{.HOME}}/.config{{end}}'
   MANY_CONFIG: '{{.CONFIG_HOME}}/many'
-  DATA_DIR: '{{.HOME}}/.local/share'
+  DATA_HOME: '{{if .XDG_DATA_HOME}}{{.XDG_DATA_HOME}}{{else}}{{.HOME}}/.local/share{{end}}'
   OPT_DIR: '{{.HOME}}/.local/opt'
-  PROJECT_ROOT: '{{.TASK_DIR}}'
+
   CLIPCASCADE_PORT: 15186
 
 tasks:
@@ -57,8 +59,8 @@ tasks:
       - mkdir -p {{.MANY_CONFIG}}/xdgconfig/many
       - ln -sf {{.MANY_CONFIG}}/launcher_apps {{.MANY_CONFIG}}/xdgconfig/many/
       
-      - mkdir -p {{.DATA_DIR}}/applications
-      - ln -sf {{.PROJECT_ROOT}}/share/applications/* {{.DATA_DIR}}/applications/
-      
       - mkdir -p {{.BIN_DIR}}
       - ln -sf {{.PROJECT_ROOT}}/bin/* {{.BIN_DIR}}/
+      
+      - mkdir -p {{.DATA_HOME}}/applications
+      - ln -sf {{.PROJECT_ROOT}}/share/applications/* {{.DATA_HOME}}/applications/
