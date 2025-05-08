@@ -1,8 +1,33 @@
-**Many** is a terminal extended into a workspace with relevant widgets. It is
-a proof-of-concept clone of [Wave Terminal](https://www.waveterm.dev/) made
-using existing components. Linux-only.
+**Many** is a terminal extended into a workspace with relevant widgets: text
+editor, file manager, browser, AI assistant, additional terminal.
+
+It is a proof-of-concept clone of [Wave Terminal](https://www.waveterm.dev/) made
+from existing parts. Linux-only.
 
 ![Many-terminal screenshot](https://perso.crans.org/grande/pub/Many_Screenshot_20250508_113911.png)
+
+## Usage (subject to change)
+
+Many starts with a single terminal.
+
+* `Meta+F2` opens a new widget
+* `Ctrl+F4` closes the current widget
+* `Ctrl+Tab` and `Ctrl+Shift+Tab` cycle through widgets
+
+> **Note!** In this prototype stage, closing Many (e.g. typing Alt+F4) immediately closes all widgets. Be sure to save your work, such as any file you're editing, before closing.
+
+Two widgets can be swapped by dragging one into the other.
+
+[Khrönkite key bindings](https://github.com/anametologin/krohnkite?tab=readme-ov-file#default-key-bindings) can be used to switch widgets (windows) and layouts.
+
+## Design
+
+Many uses a windowed KWin instance as a "frame", and simple KDE apps, configured
+into simple layouts, as "widgets".
+
+Many runs on a separate DBus session and its own XDG_CONFIG_HOME to avoid
+interference. This prevents the clipboard from being shared between Many and
+the rest of the system, so we use a separate tool to synchronize them.
 
 ## Dependencies
 ### Mandatory
@@ -12,13 +37,12 @@ using existing components. Linux-only.
 * Adapt if not on Ubuntu:
 
 ```shell
-sudo apt-get install default-jre  # Java >= 17
 sudo apt-get install sed swaybg wofi zsh
 sudo snap install --classic task  # Taskfile
 ```
 
 * [Kröhnkite](https://github.com/anametologin/krohnkite/releases) tiling extension for KWin
-  * Install with `kpackagetool6 -t KWin/Script -i krohnkite-x.x.x.x.kwinscript`
+  * Download and install with `kpackagetool6 -t KWin/Script -i krohnkite-x.x.x.x.kwinscript`
 
 ### Recommended
 
@@ -36,6 +60,7 @@ We use [ClipCascade](https://github.com/Sathvik-Rao/ClipCascade) to be able to
 copy & paste between Many and the rest of the system. This basic feature takes
 a few steps to set up:
 
+* Install Java JRE ≥ 17, e.g. `sudo apt-get install default-jre`
 * `task clipcascade`
 * `systemctl --user start clipcascade`
   * (takes 10+ seconds to start)
