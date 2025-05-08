@@ -1,5 +1,7 @@
 **`Many`**, an imitation of Wave Terminal made using KWin and other existing components.
 
+![Many-terminal screenshot](https://perso.crans.org/grande/pub/Many_Screenshot_20250508_113911.png)
+
 ## Dependencies
 ### Mandatory
 
