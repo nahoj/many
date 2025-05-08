@@ -1,6 +1,6 @@
 **Many** is a terminal extended into a workspace with relevant widgets. It is
-an imitation of [Wave Terminal](https://www.waveterm.dev/) made from existing
-components. Linux-only.
+a proof-of-concept clone of [Wave Terminal](https://www.waveterm.dev/) made
+using existing components. Linux-only.
 
 ![Many-terminal screenshot](https://perso.crans.org/grande/pub/Many_Screenshot_20250508_113911.png)
 
