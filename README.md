@@ -1,3 +1,17 @@
+After a good 7-day run, this is going to the archive. Closing notes:
+
+* Sway would be a better choice than KWin for this. It is natively tiling, with
+  a more "human" tiling style that allows just drag&dropping windows where one
+  wants them. It also displays virtual desktops by default, which can act as
+  tabs.
+* Intercepting a close event from the outside WM (`xdg_toplevel.close`) is
+  difficult. On the other hand, it is possible to configure an outside WM (at
+  least KWin) to prevent accidental closing of the nested WM. Then the Many WM
+  could only be closed from the inside, thus in a more controlled way.
+* Clipboard issues remain.
+
+---
+
 **Many** is a terminal extended into a workspace with relevant widgets: text
 editor, file manager, browser, AI assistant, additional terminal.
 
